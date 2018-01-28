@@ -28,6 +28,8 @@ public class SaxParase {
 		SAXParser parser = factory.newSAXParser();
 		
 		parser.parse(filePath, defaultHandler);
+		
+		System.out.println("hello");
 	}
 
 }
