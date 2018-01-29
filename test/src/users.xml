@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root> 
+  <user> 
+    <name>chen</name>  
+    <password>123</password>  
+    <email>scott@163.com</email>  
+    <sex>男</sex> 
+  </user>  
+  <user> 
+    <name>jack</name>  
+    <password>456</password> 
+  </user> 
+</root>
