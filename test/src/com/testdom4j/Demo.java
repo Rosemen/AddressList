@@ -23,8 +23,96 @@ public class Demo {
 	public static void main(String[] args) throws Exception {
 		/*getNameElements();
 		getSingleNameElement();*/
-//		addSexToUser();
-		addEmailBefore();
+		//addSexToUser();
+//		addEmailBefore();
+		//modify("src/users.xml");
+		//deleteSex();
+		String attributeValue = getValue();
+		System.out.println(attributeValue);
+	}
+	
+	/**获取标签的属性值，如第二个user的属性id的值*/
+	public static String getValue() throws Exception {
+		/*
+		 * 1.创建解析器 SAXReader
+		 * 2.得到document
+		 * 3.得到根结点
+		 * 
+		 * 4.得到第一个user
+		 * 5.得到属性值
+		 */
+		SAXReader saxReader = new SAXReader();
+		Document document = saxReader.read("src/users.xml");
+		Element root = document.getRootElement();
+		
+		List<Element> list = root.elements("user");
+		Element secondUser = list.get(1);
+		
+		String value = secondUser.attributeValue("id");
+		return value;
+		
+	}
+	
+	/**删除第一个user下的sex结点*/
+	public static void deleteSex() throws Exception {
+		/*
+		 * 1.创建解析器 SAXReader
+		 * 2.得到document
+		 * 3.得到根结点
+		 * 
+		 * 4.得到第一个user
+		 * 5.得到user下的sex结点
+		 * 6.通过user来删除sex结点
+		 * 
+		 * 7.回写
+		 */
+		SAXReader saxReader = new SAXReader();
+		Document document = saxReader.read("src/users.xml");
+		Element root = document.getRootElement();
+		
+		Element firstUser = root.element("user");
+		Element sex = firstUser.element("sex");
+		
+		firstUser.remove(sex);
+		
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		XMLWriter xmlWriter = new XMLWriter(new FileOutputStream("src/users.xml"), format);
+		xmlWriter.write(document);
+		xmlWriter.close();
+		
+	}
+	
+	
+	/**修改第一个user下的email结点*/
+	public static void modify(String path) throws Exception{
+		/**
+		 * 步骤:
+		 * 1.创建解析器 SAXReader
+		 * 2.得到document
+		 * 3.得到根结点
+		 * 
+		 * 4得到第一个user
+		 * 5.得到user下的所有子标签，即一个list
+		 * 6.得到email节点,使用setText进行修改
+		 * 
+		 * 7.回写到XML文件中
+		 * 
+		 */
+		
+		 SAXReader saxReader = new SAXReader();
+		 Document document = saxReader.read(path);
+		 Element root = document.getRootElement();
+		 
+		 Element firstUser = root.element("user");
+		 List<Element> list = firstUser.elements();
+		 
+		 Element email = list.get(2);
+		 email.setText("chen@163.com");
+		 
+		 OutputFormat format = OutputFormat.createPrettyPrint();
+		 XMLWriter xmlWriter = new XMLWriter(new FileOutputStream(path),format);
+		 xmlWriter.write(document);
+		 xmlWriter.close();
 	}
 	
 	/**

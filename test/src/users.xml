@@ -4,10 +4,9 @@
   <user> 
     <name>chen</name>  
     <password>123</password>  
-    <email>scott@163.com</email>  
-    <sex>男</sex> 
+    <email>chen@163.com</email> 
   </user>  
-  <user> 
+  <user id="123"> 
     <name>jack</name>  
     <password>456</password> 
   </user> 
